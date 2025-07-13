@@ -1,10 +1,30 @@
 import { createGlobalStyle } from 'styled-components';
+import { COLORS } from '../../constants';
 
 const GlobalStyles = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
+
+body {
+    /* Global variables */
+
+    --color-white: ${COLORS.white};
+
+    --color-gray-100:  ${COLORS.gray[100]};
+    --color-gray-300:  ${COLORS.gray[300]};
+    --color-gray-500:  ${COLORS.gray[500]};
+    --color-gray-700:  ${COLORS.gray[700]};
+    --color-gray-900:  ${COLORS.gray[900]};
+
+    --color-primary:  ${COLORS.primary};
+    --color-secondary:  ${COLORS.secondary};
+
+    /**********************/
+}
+
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

@@ -10,11 +10,11 @@ import * as Dialog from '@radix-ui/react-dialog';
 export default function MobileMenu({ open, onOpenChange, children }) {
     // <Dialog.Overlay className='DialogOverlay' />
   return (
-      <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      <Dialog.Root open={open} onOpenChange={onOpenChange} modal={true}>
         {children}
         <Dialog.Portal>
-          <Dialog.Content>
-            <h1>HELLO WORLD</h1>
+          <OverLay />
+          <Content>
             <VisuallyHidden>
                 <Dialog.Title className="DialogTitle">Menu</Dialog.Title>
                 <Dialog.Description className="DialogDescription">
@@ -34,10 +34,29 @@ export default function MobileMenu({ open, onOpenChange, children }) {
               <a href="/privacy">Privacy Policy</a>
               <a href="/contact">Contact Us</a>
             </footer>
-          </Dialog.Content>
+          </Content>
         </Dialog.Portal>
       </Dialog.Root>
   );
 }
+
+const OverLay = styled.div`
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: hsl(220deg, 5%, 50% / 0.8);
+`;
+
+const Content = styled.div`
+    background-color: var(--color-white);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    witdh: 300px;
+    height: 100%;
+`;
 
 MobileMenu.Button = Dialog.Trigger;

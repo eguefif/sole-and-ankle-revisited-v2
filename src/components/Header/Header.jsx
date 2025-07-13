@@ -40,7 +40,7 @@ const Header = () => {
 
               <MobileMenu
                 open={open}
-                onOpenChange={setOpen}
+                onOpenChange={() => setOpen(true)}
               >
                   <MobileMenu.Button> 
                     <Icon id='menu' />
@@ -54,7 +54,7 @@ const Header = () => {
 };
 
 const Wrapper = styled.div`
-    border-bottom: 1px solid ${COLORS.gray[300]};
+    border-bottom: 1px solid var(--color-gray-300);
     margin: 0;
     padding: 0;
 `;
@@ -86,7 +86,7 @@ const MainHeader = styled.div`
   align-items: baseline;
   padding: 18px 32px;
   height: 72px;
-  border-bottom: 1px solid ${COLORS.gray[300]};
+  border-bottom: 1px solid var(--color-gray-300);
 
     @media (max-width: ${QUERIES.tabletAndDown}) {
         display: none;
@@ -108,10 +108,11 @@ const NavLink = styled.a`
   text-transform: uppercase;
   text-decoration: none;
   color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
 
   &:first-of-type {
-    color: ${COLORS.secondary};
+  color: var(--color-secondary);
   }
 `;
 
