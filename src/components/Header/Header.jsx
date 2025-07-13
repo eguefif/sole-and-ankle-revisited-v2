@@ -8,12 +8,7 @@ import MobileMenu from '../MobileMenu';
 import Icon from '../Icon';
 
 const Header = () => {
-  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
-
-  // For our mobile hamburger menu, we'll want to use a button
-  // with an onClick handler, something like this:
-  //
-  // <button onClick={() => setShowMobileMenu(true)}>
+  const [open, setOpen] = React.useState(false);
 
   return (
     <header>
@@ -25,11 +20,11 @@ const Header = () => {
                   <Logo />
                 </Side>
                 <Nav>
-                  <NavLink href="/sale">Sale</NavLink>
+                  <NavLink href="/sale">A vendre plus long</NavLink>
                   <NavLink href="/new">New&nbsp;Releases</NavLink>
-                  <NavLink href="/men">Men</NavLink>
+                  <NavLink href="/men">Homme</NavLink>
                   <NavLink href="/women">Women</NavLink>
-                  <NavLink href="/kids">Kids</NavLink>
+                  <NavLink href="/kids">Kids/ enfants</NavLink>
                   <NavLink href="/collections">Collections</NavLink>
                 </Nav>
                 <Side />
@@ -42,11 +37,16 @@ const Header = () => {
               </LogoWrapper>
               <Icon id='shopping-bag' />
               <Icon id='search' />
-              <Icon id='menu' />
+
               <MobileMenu
-                isOpen={showMobileMenu}
-                onDismiss={() => setShowMobileMenu(false)}
-              />
+                open={open}
+                onOpenChange={setOpen}
+              >
+                  <MobileMenu.Button> 
+                    <Icon id='menu' />
+                  </MobileMenu.Button>
+              </MobileMenu>
+
           </MobileWrapper>
       </Wrapper>
     </header>
@@ -95,7 +95,7 @@ const MainHeader = styled.div`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 48px;
+  gap: clamp(0.5rem, 1vw + 1rem, 5rem);
   margin: 0px 48px;
 `;
 
@@ -104,7 +104,7 @@ const Side = styled.div`
 `;
 
 const NavLink = styled.a`
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 1vw - 1.125rem, 5rem);
   text-transform: uppercase;
   text-decoration: none;
   color: ${COLORS.gray[900]};
