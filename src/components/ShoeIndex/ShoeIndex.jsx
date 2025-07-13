@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { WEIGHTS } from '../../constants';
+import { WEIGHTS, QUERIES } from '../../constants';
 
 import Breadcrumbs from '../Breadcrumbs';
 import Select from '../Select';
@@ -13,16 +13,27 @@ const ShoeIndex = ({ sortId, setSortId }) => {
   return (
     <Wrapper>
       <MainColumn>
+        <BreadcrumbsWrapper>
+            <Breadcrumbs>
+              <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
+              <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
+              <Breadcrumbs.Crumb href="/sale/shoes">
+                Shoes
+              </Breadcrumbs.Crumb>
+            </Breadcrumbs>
+        </BreadcrumbsWrapper>
         <Header>
           <Title>Running</Title>
-          <Select
-            label="Sort"
-            value={sortId}
-            onChange={(ev) => setSortId(ev.target.value)}
-          >
-            <option value="newest">Newest Releases</option>
-            <option value="price">Price</option>
-          </Select>
+          <SelectWrapper>
+              <Select
+                label="Sort"
+                value={sortId}
+                onChange={(ev) => setSortId(ev.target.value)}
+              >
+                <option value="newest">Newest Releases</option>
+                <option value="price">Price</option>
+              </Select>
+          </SelectWrapper>
         </Header>
         <Spacer size={32} />
         <ShoeGrid />
@@ -42,6 +53,19 @@ const ShoeIndex = ({ sortId, setSortId }) => {
   );
 };
 
+const SelectWrapper = styled.div`
+    @media (max-width: ${QUERIES.mobilAndDown}) {
+        display:none;
+    }
+`;
+
+const BreadcrumbsWrapper = styled.div`
+    display: none;
+    @media (max-width: ${QUERIES.tabletAndDown}) {
+        display: flow;
+    }
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -51,6 +75,9 @@ const Wrapper = styled.div`
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
+  @media (max-width: ${QUERIES.tabletAndDown}) {
+    display: none;
+  }
 `;
 
 const MainColumn = styled.div`
